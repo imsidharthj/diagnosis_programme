@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient Information</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'patients/styles.css' %}">
+</head>
+<body>
+    <h1>Patient Information</h1>
+    <a href="{% url 'new_patient' %}">Add New Patient</a>
+    {% if patients %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Weight</th>
+                    <th>Allergy</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in patients %}
+                    <tr>
+                        <td>{{ patient.name }}</td>
+                        <td>{{ patient.age }}</td>
+                        <td>{{ patient.gender }}</td>
+                        <td>{{ patient.weight }}</td>
+                        <td>{{ patient.allergy }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No patients found.</p>
+    {% endif %}
+</body>
+</html>
